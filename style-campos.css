@@ -1,0 +1,2257 @@
+/* Início */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  scroll-behavior: smooth;
+  transition-duration: 1s;
+}
+
+body{
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+}
+
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.header-area {
+  background: linear-gradient(to top, rgba(0, 0, 0, 7), rgba(0, 0, 0, 0)),
+  linear-gradient(to bottom, rgba(0, 0, 0, 0.692) 0%, rgba(0, 0, 0, 0) 10%);
+  height: 91vh; /* Ajuste a altura conforme desejado */
+  position: relative;
+}
+
+/* Carossel */
+.carousel01 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  max-width: 100%;
+  max-height: 91vh;   
+  overflow: hidden;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  height: 91vh;
+  background: #000000;
+  z-index: -1;
+}
+
+.carousel01-item {
+  visibility:visible;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  -webkit-align-items: center;
+  -webkit-justify-content: flex-end;
+  position: relative;
+  background-color: #ffffff;
+  flex-shrink: 0;
+ -webkit-flex-shrink: 0;
+  position: absolute;
+  z-index: -1;
+  transition: 0.6s all linear;
+}
+
+.carousel01-item__image {
+  width: 100%;
+  height: 100%;
+  order: 2;
+  align-self: flex-end;
+  flex-basis: 100%;
+  -webkit-order: 2;
+  -webkit-align-self: flex-end;
+  -webkit-flex-basis: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position:relative;
+  transform: translateX(100%);
+  transition: 0.6s all ease-in-out;
+  z-index: -1;
+}
+
+
+.carousel01-item--1 .carousel01-item__image{
+background-image: url('img/mb_banner6.jpg');
+}
+
+.active{
+ z-index: 1;
+display: flex;
+visibility:visible;
+}
+
+.active .carousel01-item__image{ 
+transition: 0.6s all ease-in-out;
+transform: translateX(0);
+}
+
+/* Estilos para telas menores (até 767px) */
+@media screen and (max-width: 767px) {
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .carousel01 {
+    margin-right: 80px;
+    margin-bottom: -50px;
+  }
+
+}
+
+/* navbar start */
+.site-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Estilo para a linha abaixo da logo e das opções do menu */
+.site-navbar a {
+  position: relative;
+  font-size: 20px;
+}
+
+/* Ao passar o mouse sobre as opções do menu, a linha ficará vermelha */
+.site-navbar ul li a:hover::after {
+  background-color: red; /* Cor da linha quando hover */
+  height: 5px; /* Altura da linha */
+  bottom: -2px;
+}
+
+/* Estilo para a opção ativa do menu (por exemplo, a página atual) */
+.site-navbar ul li.active a::after {
+  background-color: rgb(0, 255, 38); /* Cor da linha para a opção ativa */
+}
+
+/* Estilo para remover a borda de baixo padrão das opções do menu */
+.site-navbar ul li a {
+  bottom: -1px;
+  margin-top: 2px;
+  color: #fff;
+  padding: 20px;
+  display: block;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+/* Logo */
+.logo-img {
+  width: 180px; /* Largura desejada para a imagem */
+  height: auto; /* Isso permite que a altura seja ajustada automaticamente */
+  margin-top: -10px;
+  margin-bottom: 18px;
+}
+
+a.site-logo {
+  font-size: 24px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #fff;
+  text-decoration: none;
+  bottom: -2px;
+  padding-bottom: 6px;
+}
+
+.search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+#search-input {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  margin-right: 5px;
+}
+
+#search-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Estilo para o ícone de pesquisa (font-awesome usado como exemplo) */
+#search-button i {
+  font-size: 20px;
+  color: #ffffff; /* Cor do ícone */
+}
+
+/* Estilo para ocultar o campo de pesquisa inicialmente */
+#search-input {
+  display: none;
+}
+/* navbar end */
+
+/* nav-toggler start */
+.nav-toggler {
+  border: none;
+  padding: 5px;
+  background-color: transparent;
+  cursor: pointer;
+  height: 39px;
+  display: none;
+}
+.nav-toggler span, 
+.nav-toggler span:before, 
+.nav-toggler span:after {
+  width: 28px;
+  height: 2px;
+  background-color: #fff;
+  display: block;
+  transition: .3s;
+}
+.nav-toggler span:before {
+  content: '';
+  transform: translateY(-9px);
+}
+.nav-toggler span:after {
+  content: '';
+  transform: translateY(6px);
+}
+.nav-toggler.toggler-open span {
+  background-color: transparent;
+}
+.nav-toggler.toggler-open span:before {
+  transform: translateY(0px) rotate(45deg);
+}
+.nav-toggler.toggler-open span:after {
+  transform: translateY(-3px) rotate(-45deg);
+}
+/* nav-toggler start */
+
+/* intro-area start */
+.intro-area {
+  height: calc(107vh - 61px);
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #fff;
+  position: relative; /* Adicione esta linha */
+  top: -100%;
+}
+
+/* Estilize a coluna de texto */
+.text-column-intro {
+  max-width: 120px; /* Defina a largura máxima desejada para a coluna de texto */
+  margin-left: 0; /* Centralize a coluna de texto horizontalmente */
+}
+
+
+@keyframes slideFadeInRight {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideFadeInLeft {
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media screen and (max-width: 767px) {
+  
+  .container {
+    max-width: 720px;
+  }
+  
+  .navbar-area {
+    position: absolute;
+    top: 3px;
+    left: 0;
+    border-bottom: 1px solid #ffffff;
+    padding-bottom: 3px;
+    width: 100%;
+    background: linear-gradient (rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
+    z-index: 999;
+  }
+
+  a.site-logo {
+    font-size:17px;
+  }
+
+  a.site-logo img {
+    width: 120px;
+    margin-top: 2px;
+    margin-bottom: 1px;
+  }
+
+  .nav-toggler{
+    display: block;
+  }
+
+  .sit
+  e-navbar {
+    min-height: 60px;
+  }
+
+  .site-navbar ul {
+    position: absolute;
+    width: 100%;
+    height: calc(100vh - 60px);
+    left: 0;
+    top: 50px;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.831);
+    max-height: 0;
+    overflow: hidden;
+    transition: .3s;
+  }
+
+  .site-navbar ul li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .site-navbar ul li a {
+    padding: 25px;
+  }
+
+  .site-navbar ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.177);
+  }
+
+  .site-navbar ul.open {
+    max-height: 100vh;
+    overflow: visible;
+  }
+ 
+  .header-area {
+    height: 66vh;
+  }
+
+  /* Carossel */
+  .carousel01-item--1 .carousel01-item__image{
+    background-image: url('img/mb_banner6.jpg');
+    }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .intro-area {
+    height: 40vh; /* Defina a altura desejada para dispositivos móveis (50% da altura da tela) */
+    justify-content: center; /* Centralize verticalmente o conteúdo */
+    color: #fff;
+    position: relative; /* Adicione esta linha */
+    top: -120%;
+  }
+
+  .intro-area p, .intro-area h2 {
+    animation: fadeIn 1s ease-in-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .intro-area h2 {
+    font-size: 37px; /* Ajuste o tamanho da fonte para dispositivos móveis */
+    margin-bottom: 10px;
+    line-height: 40px;
+    text-align: center;
+    margin-top: 140px;
+    font-weight: 700;
+    font-family: 'Nome da Fonte', sans-serif;
+  }
+
+  .intro-area p {
+    font-size: 14px; /* Ajuste o tamanho da fonte para dispositivos móveis */
+    text-align: center;
+    font-weight: 200;
+    font-family: 'Nome da Fonte', sans-serif;
+  }
+
+  .intro-area h3 {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #ffffff;
+    margin-top: -1%;
+  }
+  
+  /* Estilos para o ícone do Instagram */
+  .intro-area i {
+    margin-right: 5px; /* Espaçamento à direita do ícone */
+    color: #ffffff; /* Cor do ícone do Instagram */
+    font-size: 30px; /* Tamanho do ícone */
+    vertical-align: middle;
+  }
+  
+  .text-column-intro {
+    max-width: 500px; /* Defina a largura máxima desejada para a coluna de texto */
+  }
+
+  .site-navbar a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  }
+
+  .search-bar {
+    position: relative;
+    display: none;
+    align-items: center;
+    margin-right: -135px;
+  }
+
+  #search-input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 5px;
+    width: 130px; /* Defina a largura inicial como zero */
+    overflow: hidden; /* Ocultar qualquer conteúdo que exceda a largura zero */
+    transition: width 0.3s ease; /* Adicionar uma transição suave para a largura */
+  }
+
+  #search-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+
+  /* Estilo para o ícone de pesquisa (font-awesome usado como exemplo) */
+  #search-button i {
+    font-size: 20px;
+    color: #ffffff; /* Cor do ícone */
+    margin-right: 45px;
+  }
+
+  /* Estilo para ocultar o campo de pesquisa inicialmente */
+  #search-input {
+    display: none;
+  }
+
+  /* Estilo para quando o campo de pesquisa estiver aberto */
+  #search-input.open {
+    width: 130px; /* Defina a largura desejada */
+    display: block;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .navbar-area {
+    position: absolute;
+    top: 50px;
+    width: calc(100%);
+    margin-left: -40px; /* Adiciona um espaço à esquerda para manter a centralização */
+    margin-right: 10px;
+    background: linear-gradient (rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
+    z-index: 999;
+    }
+  
+  .site-logo {
+    display: flex;
+    align-items: center;
+    font-size: 26px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    margin-left: -180px;
+    }
+  
+    .site-navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #fff; /* Adicione a borda na parte inferior da navegação */
+      margin-right: -250px;
+    }
+
+    .site-navbar ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      margin-right: -50px;
+      margin-left: -30px;
+    }
+    
+    .site-navbar ul li {
+      margin-right: 200px; /* Adicione o espaçamento entre os itens conforme desejado */
+    }
+    
+    /* Ajuste o último item para que não tenha margem à direita */
+    .site-navbar ul li:last-child {
+      margin-right: 0;
+    }
+    
+
+  .intro-area {
+    height: 60vh; /* Altura para telas a partir de 768px */
+    margin-top: -2%;
+  }
+
+  .text-column-intro {
+    max-width: 100%; /* Defina a largura máxima desejada para a coluna de texto */
+  }
+
+  .intro-area h2 {
+    margin-top: 350px;
+    font-size: 90px; /* Tamanho de fonte para telas a partir de 768px */
+    line-height: 85px;
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: 'Nome da Fonte', sans-serif;
+    opacity: 0; /* Inicialmente, o texto é transparente */
+    transform: translateX(-50px); /* Inicialmente, o texto está deslocado para a esquerda */
+    animation: slideFadeInRight 1s ease-in-out forwards;
+  }
+
+  .intro-area p {
+    font-size: 18px; /* Tamanho de fonte para telas a partir de 768px */
+    text-align: center;
+    font-weight: 200;
+    font-family: 'Nome da Fonte', sans-serif;
+    opacity: 0;
+    transform: translateX(50px);
+    animation: slideFadeInLeft 1s ease-in-out forwards;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .intro-area h3 {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #ffffff;
+  }
+  
+  /* Estilos para o ícone do Instagram */
+  .intro-area i {
+    margin-right: 5px; /* Espaçamento à direita do ícone */
+    color: #ffffff; /* Cor do ícone do Instagram */
+    font-size: 40px; /* Tamanho do ícone */
+    vertical-align: middle;
+  }
+
+    /* Estilo para a linha abaixo da logo e das opções do menu */
+    .site-navbar a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0px;
+      background-color: #fff; /* Cor da linha (inicialmente branca) */
+      height: 1px; /* Altura da linha */
+      transition: background-color 0.3s;
+      }
+      
+}
+
+@media screen and (min-width: 1025px) and (max-width: 1200px) {
+  .navbar-area {
+    position: absolute;
+    top: 30px;
+    width: calc(100%);
+    margin-left: 10px; /* Adiciona um espaço à esquerda para manter a centralização */
+    margin-right: 10px;
+    background: linear-gradient (rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
+    z-index: 999;
+    }
+  
+  .site-logo {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    margin-left: -30px;
+    }
+  
+    .site-navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #fff; /* Adicione a borda na parte inferior da navegação */
+      margin-right: -7px;
+    }
+
+    .site-navbar ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      margin-right: -50px;
+      margin-left: -30px;
+    }
+    
+    .site-navbar ul li {
+      margin-right: 45px; /* Adicione o espaçamento entre os itens conforme desejado */
+    }
+    
+    /* Ajuste o último item para que não tenha margem à direita */
+    .site-navbar ul li:last-child {
+      margin-right: 0;
+    }
+    
+  .intro-area {
+    height: 60vh; /* Altura para telas entre 1025px e 1200px */
+  }
+
+  .intro-area h2 {
+    margin-top: -10px;
+    font-size: 70px; /* Tamanho de fonte para telas a partir de 768px */
+    line-height: 85px;
+    text-align: left;
+    margin-left: -20px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    font-family: 'Nome da Fonte', sans-serif;
+    opacity: 0; /* Inicialmente, o texto é transparente */
+    transform: translateX(-50px); /* Inicialmente, o texto está deslocado para a esquerda */
+    animation: slideFadeInRight 1s ease-in-out forwards;
+  }
+
+  .intro-area p {
+    font-size: 16px; /* Tamanho de fonte para telas a partir de 768px */
+    text-align: left;
+    margin-left: -20px;
+    font-weight: 200;
+    font-family: 'Nome da Fonte', sans-serif;
+    opacity: 0;
+    transform: translateX(50px);
+    animation: slideFadeInLeft 1s ease-in-out forwards;
+  }
+
+  .text-column-intro {
+    max-width: 340px; /* Defina a largura máxima desejada para a coluna de texto */
+    margin-left: 0; /* Centralize a coluna de texto horizontalmente */
+  }
+}
+
+@media screen and (min-width: 1201px) and (max-width: 1440px) {
+  .navbar-area {
+    position: absolute;
+    top: 30px;
+    width: calc(100%);
+    margin-left: 10px; /* Adiciona um espaço à esquerda para manter a centralização */
+    margin-right: 10px;
+    background: linear-gradient (rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
+    z-index: 999;
+    }
+  
+  .site-logo {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    margin-left: -5px;
+    }
+  
+    .site-navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #fff; /* Adicione a borda na parte inferior da navegação */
+      margin-right: 20px;
+    }
+
+    .site-navbar ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      margin-right: -50px;
+      margin-left: -30px;
+    }
+    
+    .site-navbar ul li {
+      margin-right: 85px; /* Adicione o espaçamento entre os itens conforme desejado */
+    }
+    
+    /* Ajuste o último item para que não tenha margem à direita */
+    .site-navbar ul li:last-child {
+      margin-right: 0;
+    }
+    
+  .intro-area {
+    height: 65vh; /* Altura para telas entre 1025px e 1200px */
+  }
+
+  .intro-area h2 {
+    margin-top: -10px;
+    font-size: 70px; /* Tamanho de fonte para telas a partir de 768px */
+    line-height: 85px;
+    text-align: left;
+    margin-left: 5px;
+    font-weight: 700;
+    margin-bottom: 5px;
+    font-family: 'Nome da Fonte', sans-serif;
+    opacity: 0; /* Inicialmente, o texto é transparente */
+    transform: translateX(-50px); /* Inicialmente, o texto está deslocado para a esquerda */
+    animation: slideFadeInRight 1s ease-in-out forwards;
+  }
+
+  .intro-area p {
+    font-size: 16px; /* Tamanho de fonte para telas a partir de 768px */
+    text-align: left;
+    margin-left: 5px;
+    font-weight: 200;
+    font-family: 'Nome da Fonte', sans-serif;
+    opacity: 0;
+    transform: translateX(50px);
+    animation: slideFadeInLeft 1s ease-in-out forwards;
+  }
+
+  .text-column-intro {
+    max-width: 340px; /* Defina a largura máxima desejada para a coluna de texto */
+    margin-left: 0; /* Centralize a coluna de texto horizontalmente */
+  }
+}
+
+  @media screen and (min-width: 1441px) and (max-width: 1600px) {
+    .navbar-area {
+      position: absolute;
+      top: 50px;
+      width: calc(100%);
+      margin-left: -30px; /* Adiciona um espaço à esquerda para manter a centralização */
+      margin-right: 10px;
+      background: linear-gradient (rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8));
+      z-index: 999;
+      }
+    
+    .site-logo {
+      display: flex;
+      align-items: center;
+      font-size: 26px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #fff;
+      text-decoration: none;
+      margin-left: -180px;
+      }
+    
+      .site-navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid #fff; /* Adicione a borda na parte inferior da navegação */
+        margin-right: -250px;
+      }
+  
+      .site-navbar ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        display: flex;
+        margin-right: -50px;
+        margin-left: -30px;
+      }
+      
+      .site-navbar ul li {
+        margin-right: 200px; /* Adicione o espaçamento entre os itens conforme desejado */
+      }
+      
+      /* Ajuste o último item para que não tenha margem à direita */
+      .site-navbar ul li:last-child {
+        margin-right: 0;
+      }
+      
+  
+    .intro-area {
+      height: 60vh; /* Altura para telas a partir de 768px */
+    }
+  
+    .text-column-intro {
+      max-width: 250px; /* Defina a largura máxima desejada para a coluna de texto */
+      margin-left: 0; /* Centralize a coluna de texto horizontalmente */
+    }
+  
+    .intro-area h2 {
+      margin-top: 10px;
+      font-size: 90px; /* Tamanho de fonte para telas a partir de 768px */
+      line-height: 85px;
+      text-align: left;
+      margin-left: -210px;
+      font-weight: 700;
+      margin-bottom: 40px;
+      font-family: 'Nome da Fonte', sans-serif;
+      opacity: 0; /* Inicialmente, o texto é transparente */
+      transform: translateX(-50px); /* Inicialmente, o texto está deslocado para a esquerda */
+      animation: slideFadeInRight 1s ease-in-out forwards;
+    }
+  
+    .intro-area p {
+      font-size: 18px; /* Tamanho de fonte para telas a partir de 768px */
+      text-align: left;
+      margin-left: -210px;
+      font-weight: 200;
+      font-family: 'Nome da Fonte', sans-serif;
+      opacity: 0;
+      transform: translateX(50px);
+      animation: slideFadeInLeft 1s ease-in-out forwards;
+    }
+  }
+
+
+
+
+
+
+/* LA FÁBRICA */
+  .container01 {
+    background-color: #000;
+    max-width: 100%; 
+    margin: 0 auto; 
+    padding: 20px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  }
+
+  video {
+    width: 100%;
+    height: 600px; 
+  }
+
+@media (max-width: 767px) {
+  video {
+    width: 100%;
+    height: 370px; 
+  }
+}
+
+/* INFO VIDEO */
+  .container-inf01 {
+    display: flex;
+    background-color: #000;
+    color: #fff;
+    padding: 70px;
+    align-items: center;
+    flex-direction: row-reverse;
+  }
+
+  .text-inf01 {
+    margin-top: 50px;
+    flex: 1;
+    padding: 20px;
+    margin-left: 3%; 
+  }
+
+@media (min-width: 768px) {
+  .text-inf01 h1 {
+    font-size: 90px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    font-family: 'Nome da Fonte', sans-serif;
+    opacity: 0; 
+    transform: translateX(-50px); 
+    animation: slideFadeInRight 1s ease-in-out forwards;
+    margin-top: -5px;
+  }
+
+  .text-inf01 p {
+    font-size: 24px; 
+    text-align: left;
+    transform: translateX(50px);
+    animation: slideFadeInLeft 1s ease-in-out forwards;
+    margin-bottom: 50px;
+  }
+}
+
+  .button-container {
+    display: flex;
+    flex-direction: line;
+    align-items: center;
+    font-weight: bold;
+  }
+
+  .button-inf01 {
+    background-color: rgb(19, 210, 108);
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 0;
+    text-align: center;
+    width: 100%; 
+    transition: background-color 0.3s, transform 0.2s;
+    font-size: 18px;
+    margin-right: 6px;
+  }
+
+  .button-inf01:hover {
+    background-color: rgb(19, 210, 48);
+    text-decoration: none;
+    color: #ffffff;
+    transform: scale(1.05);
+  }
+
+  .button-inf01,
+  .button-inf01:visited,
+  .button-inf01:focus,
+  .button-inf01:hover,
+  .button-inf01:active {
+    color: #fff;
+    text-decoration: none;
+  }
+
+/* Dispositivos móveis */
+@media (max-width: 767px) {
+  .container-inf01 {
+    flex-direction: column;
+    padding: 10px; 
+    margin-bottom: -10px;
+  }
+
+  .text-inf01 {
+    margin-left: 0; 
+    margin-right: 0; 
+    margin-top: -20px;
+  }
+
+  .text-inf01 h1, .text-inf01 p {
+    animation: fadeIn 1s ease-in-out forwards;
+  }
+  
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .text-inf01 h1 {
+    font-size: 44px; 
+    margin-bottom: 20px; 
+    font-weight: 700;
+    text-align: left;
+  }
+
+  .text-inf01 p {
+    font-size: 18px; 
+    text-align: left;
+    margin-bottom: 15px;
+  }
+
+  .button-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 3%;
+    margin-left: 3%;
+    font-weight: bold;
+  }
+  
+  .button-inf01 {
+    background-color: rgb(19, 210, 108);
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 10px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 0;
+    text-align: center;
+    width: 100%; 
+    font-size: 11px;
+  }
+  
+  .button-inf01:hover {
+    text-decoration: none;
+    color: #ffffff;
+  }
+}
+
+
+
+
+
+/* LA CLÍNICA */
+.container02 {
+  background-color: #000;
+  max-width: 100%; 
+  margin: 0 auto; 
+  padding: 20px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+video {
+  width: 100%;
+  height: 600px; 
+}
+
+@media (max-width: 767px) {
+video {
+  width: 100%;
+  height: 370px; 
+}
+}
+
+/* INFO VIDEO */
+.container-inf02 {
+  display: flex;
+  background-color: #000;
+  color: #fff;
+  padding: 70px;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+
+.text-inf02 {
+  margin-top: 50px;
+  flex: 1;
+  padding: 20px;
+  margin-left: 3%; 
+}
+
+@media (min-width: 768px) {
+.text-inf02 h1 {
+  font-size: 90px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  font-family: 'Nome da Fonte', sans-serif;
+  opacity: 0; 
+  transform: translateX(-50px); 
+  animation: slideFadeInRight 1s ease-in-out forwards;
+  margin-top: -5px;
+}
+
+.text-inf02 p {
+  font-size: 24px; 
+  text-align: left;
+  transform: translateX(50px);
+  animation: slideFadeInLeft 1s ease-in-out forwards;
+  margin-bottom: 50px;
+}
+}
+
+.button-container {
+  display: flex;
+  flex-direction: line;
+  align-items: center;
+  font-weight: bold;
+}
+
+.button-inf02 {
+  background-color: rgb(19, 210, 108);
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 0;
+  text-align: center;
+  width: 100%; 
+  transition: background-color 0.3s, transform 0.2s;
+  font-size: 18px;
+  margin-right: 6px;
+}
+
+.button-inf02:hover {
+  background-color: rgb(19, 210, 48);
+  text-decoration: none;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.button-inf02,
+.button-inf02:visited,
+.button-inf02:focus,
+.button-inf02:hover,
+.button-inf02:active {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Dispositivos móveis */
+@media (max-width: 767px) {
+.container-inf02 {
+  flex-direction: column;
+  padding: 10px; 
+  margin-bottom: -10px;
+}
+
+.text-inf02 {
+  margin-left: 0; 
+  margin-right: 0; 
+  margin-top: -20px;
+}
+
+.text-inf02 h1, .text-inf02 p {
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.text-inf02 h1 {
+  font-size: 44px; 
+  margin-bottom: 20px; 
+  font-weight: 700;
+  text-align: left;
+}
+
+.text-inf02 p {
+  font-size: 18px; 
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 3%;
+  margin-left: 3%;
+  font-weight: bold;
+}
+
+.button-inf02 {
+  background-color: rgb(19, 210, 108);
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 10px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 0;
+  text-align: center;
+  width: 100%; 
+  font-size: 11px;
+}
+
+.button-inf02:hover {
+  text-decoration: none;
+  color: #ffffff;
+}
+}
+
+
+
+
+
+/* LA VILLA */
+.container03 {
+  background-color: #000;
+  max-width: 100%; 
+  margin: 0 auto; 
+  padding: 20px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+video {
+  width: 100%;
+  height: 600px; 
+}
+
+@media (max-width: 767px) {
+video {
+  width: 100%;
+  height: 370px; 
+}
+}
+
+/* INFO VIDEO */
+.container-inf03 {
+  display: flex;
+  background-color: #000;
+  color: #fff;
+  padding: 70px;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+
+.text-inf03 {
+  margin-top: 50px;
+  flex: 1;
+  padding: 20px;
+  margin-left: 3%; 
+}
+
+@media (min-width: 768px) {
+.text-inf03 h1 {
+  font-size: 90px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  font-family: 'Nome da Fonte', sans-serif;
+  opacity: 0; 
+  transform: translateX(-50px); 
+  animation: slideFadeInRight 1s ease-in-out forwards;
+  margin-top: -5px;
+}
+
+.text-inf03 p {
+  font-size: 24px; 
+  text-align: left;
+  transform: translateX(50px);
+  animation: slideFadeInLeft 1s ease-in-out forwards;
+  margin-bottom: 50px;
+}
+}
+
+.button-container {
+  display: flex;
+  flex-direction: line;
+  align-items: center;
+  font-weight: bold;
+}
+
+.button-inf03 {
+  background-color: rgb(19, 210, 108);
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 0;
+  text-align: center;
+  width: 100%; 
+  transition: background-color 0.3s, transform 0.2s;
+  font-size: 18px;
+  margin-right: 6px;
+}
+
+.button-inf03:hover {
+  background-color: rgb(19, 210, 48);
+  text-decoration: none;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.button-inf03,
+.button-inf03:visited,
+.button-inf03:focus,
+.button-inf03:hover,
+.button-inf03:active {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Dispositivos móveis */
+@media (max-width: 767px) {
+.container-inf03 {
+  flex-direction: column;
+  padding: 10px; 
+  margin-bottom: -10px;
+}
+
+.text-inf03 {
+  margin-left: 0; 
+  margin-right: 0; 
+  margin-top: -20px;
+}
+
+.text-inf03 h1, .text-inf03 p {
+  animation: fadeIn 1s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.text-inf03 h1 {
+  font-size: 44px; 
+  margin-bottom: 20px; 
+  font-weight: 700;
+  text-align: left;
+}
+
+.text-inf03 p {
+  font-size: 18px; 
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 3%;
+  margin-left: 3%;
+  font-weight: bold;
+}
+
+.button-inf03 {
+  background-color: rgb(19, 210, 108);
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 10px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 0;
+  text-align: center;
+  width: 100%; 
+  font-size: 11px;
+}
+
+.button-inf03:hover {
+  text-decoration: none;
+  color: #ffffff;
+}
+}
+
+
+
+
+
+/* LA CÁLLI */
+.container04 {
+  background-color: #000;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+video {
+  width: 100%;
+  height: 600px;
+}
+
+@media (max-width: 767px) {
+  video {
+    width: 100%;
+    height: 370px;
+  }
+}
+
+/* INFO VIDEO */
+.container-inf04 {
+  display: flex;
+  background-color: #000;
+  color: #fff;
+  padding: 70px;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+
+.text-inf04 {
+  margin-top: 50px;
+  flex: 1;
+  padding: 20px;
+  margin-left: 3%;
+}
+
+@media (min-width: 768px) {
+  .text-inf04 h1 {
+    font-size: 90px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    font-family: 'Nome da Fonte', sans-serif;
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: slideFadeInRight 1s ease-in-out forwards;
+    margin-top: -5px;
+  }
+
+  .text-inf04 p {
+    font-size: 24px;
+    text-align: left;
+    transform: translateX(50px);
+    animation: slideFadeInLeft 1s ease-in-out forwards;
+    margin-bottom: 50px;
+  }
+}
+
+.button-container04 {
+  display: flex;
+  flex-direction: line;
+  align-items: center;
+  font-weight: bold;
+}
+
+.button-inf04 {
+  background-color: rgb(19, 210, 108);
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 0;
+  text-align: center;
+  width: 100%;
+  transition: background-color 0.3s, transform 0.2s;
+  font-size: 18px;
+  margin-right: 6px;
+}
+
+.button-inf04:hover {
+  background-color: rgb(19, 210, 48);
+  text-decoration: none;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.button-inf04,
+.button-inf04:visited,
+.button-inf04:focus,
+.button-inf04:hover,
+.button-inf04:active {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Dispositivos móveis */
+@media (max-width: 767px) {
+  .container-inf04 {
+    flex-direction: column;
+    padding: 10px;
+    margin-bottom: -10px;
+  }
+
+  .text-inf04 {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: -20px;
+  }
+
+  .text-inf04 h1, .text-inf04 p {
+    animation: fadeIn 1s ease-in-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .text-inf04 h1 {
+    font-size: 44px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-align: left;
+  }
+
+  .text-inf04 p {
+    font-size: 18px;
+    text-align: left;
+    margin-bottom: 15px;
+  }
+
+  .button-container04 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 3%;
+    margin-left: 3%;
+    font-weight: bold;
+  }
+
+  .button-inf04 {
+    background-color: rgb(19, 210, 108);
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 10px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 0;
+    text-align: center;
+    width: 100%;
+    font-size: 11px;
+  }
+
+  .button-inf04:hover {
+    text-decoration: none;
+    color: #ffffff;
+  }
+}
+
+
+
+
+
+/* LA MEDELLIN */
+.container05 {
+  background-color: #000;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+video {
+  width: 100%;
+  height: 600px;
+}
+
+@media (max-width: 767px) {
+  video {
+    width: 100%;
+    height: 370px;
+  }
+}
+
+/* INFO VIDEO */
+.container-inf05 {
+  display: flex;
+  background-color: #000;
+  color: #fff;
+  padding: 70px;
+  align-items: center;
+  flex-direction: row-reverse;
+}
+
+.text-inf05 {
+  margin-top: 50px;
+  flex: 1;
+  padding: 20px;
+  margin-left: 3%;
+  margin-bottom: -60px;
+}
+
+@media (min-width: 768px) {
+  .text-inf05 h1 {
+    font-size: 90px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    font-family: 'Nome da Fonte', sans-serif;
+    opacity: 0;
+    transform: translateX(-50px);
+    animation: slideFadeInRight 1s ease-in-out forwards;
+    margin-top: -5px;
+  }
+
+  .text-inf05 p {
+    font-size: 24px;
+    text-align: left;
+    transform: translateX(50px);
+    animation: slideFadeInLeft 1s ease-in-out forwards;
+    margin-bottom: 50px;
+  }
+}
+
+.button-container05 {
+  display: flex;
+  flex-direction: line;
+  align-items: center;
+  font-weight: bold;
+}
+
+.button-inf05 {
+  background-color: rgb(19, 210, 108);
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 20px;
+  margin-top: 15px;
+  border: none;
+  border-radius: 0;
+  text-align: center;
+  width: 31.5%;
+  transition: background-color 0.3s, transform 0.2s;
+  font-size: 18px;
+  margin-right: 6px;
+}
+
+.button-inf05:hover {
+  background-color: rgb(19, 210, 48);
+  text-decoration: none;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.button-inf05,
+.button-inf05:visited,
+.button-inf05:focus,
+.button-inf05:hover,
+.button-inf05:active {
+  color: #fff;
+  text-decoration: none;
+}
+
+/* Dispositivos móveis */
+@media (max-width: 767px) {
+  .container-inf05 {
+    flex-direction: column;
+    padding: 10px;
+    margin-bottom: -10px;
+  }
+
+  .text-inf05 {
+    margin-left: 0;
+    margin-right: 0;
+    margin-top: -20px;
+  }
+
+  .text-inf05 h1, .text-inf05 p {
+    animation: fadeIn 1s ease-in-out forwards;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .text-inf05 h1 {
+    font-size: 44px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-align: left;
+  }
+
+  .text-inf05 p {
+    font-size: 18px;
+    text-align: left;
+    margin-bottom: 15px;
+  }
+
+  .button-container05 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 3%;
+    margin-left: 3%;
+    font-weight: bold;
+  }
+
+  .button-inf05 {
+    background-color: rgb(19, 210, 108);
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 10px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 0;
+    text-align: center;
+    width: 50%;
+    font-size: 11px;
+  }
+
+  .button-inf05:hover {
+    text-decoration: none;
+    color: #ffffff;
+  }
+}
+
+
+
+
+
+
+
+  /* Formulário */
+.container-form {
+    display: flex;
+    justify-content: space-between; /* Espaço entre as colunas */
+    align-items: center;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 40px;
+    position: relative;
+  }
+  
+  .left-column {
+    flex: 1; /* Distribua o espaço igualmente entre as colunas */
+    max-width: 45%;
+    display: flex; /* Adicione flex display */
+    flex-direction: column; /* Alinhe os elementos verticalmente */
+    align-items: center; /* Centralize horizontalmente */
+  }
+  
+  .left-column,
+  .right-column {
+    flex: 1; /* Distribua o espaço igualmente entre as colunas */
+    max-width: 45%;
+  }
+  
+  /* Estilize o formulário */
+  .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    text-align: left;
+  }
+  
+  .form-group label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 16px;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid #414141;
+    background-color: #3d3d3d;
+    color: #fff;
+    transition: border-color 0.3s ease;
+    margin-bottom: 10px; /* Espaçamento inferior entre campos */
+  }
+  
+  .form-group input[type="text"]:focus,
+  .form-group input[type="email"]:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: #85b7d9;
+    box-shadow: 0 0 5px rgba(133, 183, 217, 0.5);
+    background-color: #7b7b7b;
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+    flex-basis: 100%;
+    margin-top: 10px; /* Adicione margem superior ao campo de texto */
+  }
+  
+  /* Estilize o botão */
+  @import url(https://fonts.googleapis.com/css?family=Open+Sans:800,400);
+  *, *:before, *:after {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+  }
+  
+  .mail-btn {
+    position:relative;
+    top:35%;
+    border-radius: 15px;
+    display:inline-block;
+    padding:0.4rem 0.4rem;
+    border:1px solid rgb(28, 82, 170);
+    background:rgb(28, 82, 170);
+    outline:none;
+    -webkit-appearance: none;
+    font-size: 1.5rem;
+    color:rgba(255,255,255,1);
+    text-decoration:none;
+    text-transform:uppercase;
+    letter-spacing:0.1rem;
+    text-indent:0.5rem;
+    cursor:pointer;
+    transition:
+      color 1.5s .5s,
+      border 3s 1s;
+  }
+  
+  .mail-btn:before,
+  .mail-btn:after {
+    content:'';
+    position:absolute;
+    opacity:0;
+    backface-visibility:visible;
+    transform-style:preserve-3d;
+    perspective:100px;
+    transform-origin:50% -50%;
+    transform:rotateX(360deg) rotateY(0) translateX(-50%) translateY(0) scale(0.2);
+    transition:all 0.5s;
+  }
+  .mail-btn:before {
+    top:5px;
+    left:50%;
+    height:3rem;
+    background:rgb(66, 138, 255);
+    border-top:2rem solid #ffffff;
+    border-right:3rem solid transparent;
+    border-left:3rem solid transparent;
+  }
+  .mail-btn:after {
+    top:0;
+    left:50%;
+    border-top:2rem solid rgb(66, 138, 255);
+    border-right:3rem solid transparent;
+    border-left:3rem solid transparent;
+  }
+  .mail-btn:hover {
+    color:rgba(255,255,255,0);
+    border:2px solid rgba(255,255,255,0);
+    transition:
+      color .25s,
+      border .25s;
+  }
+  .mail-btn:hover:before,
+  .mail-btn:hover:after {
+    opacity:1;
+    transform:rotateX(0) rotateY(-10deg) translateX(-50%) translateY(0) scale(1);
+  }
+  .fly {
+    color:rgba(255,255,255,0);
+    border:2px solid rgba(255,255,255,0);
+    animation:sended 4s 0.8s forwards;
+  }
+  @keyframes sended {
+    0% {
+      height:1.7rem;
+      width:3.2rem;
+      border-top:0;
+      border-right:0;
+      border-bottom:10px solid white;
+      border-left:10px solid white;
+      opacity:0;
+      transform:rotate(-45deg) translateX(300%) translateY(-500%);
+    }
+    5% {
+      height:1.7rem;
+      width:3.2rem;
+      border-top:0;
+      border-right:0;
+      border-bottom:10px solid white;
+      border-left:10px solid white;
+      opacity:1;
+      transform:rotate(-45deg) translateX(0) translateY(0);
+    }
+    78% {
+      height:1.7rem;
+      width:3.2rem;
+      border-top:0;
+      border-right:0;
+      border-bottom:10px solid white;
+      border-left:10px solid white;
+      opacity:1;
+      transform:rotate(-45deg) translateX(0) translateY(0);
+    }
+    79% {
+      height:1.7rem;
+      width:3.2rem;
+      border-top:0;
+      border-right:0;
+      border-bottom:10px solid white;
+      border-left:10px solid white;
+      opacity:0;
+      transform:rotate(-45deg) translateX(0) translateY(0);
+    }
+    80% {
+      height:auto;
+      width:auto;
+      color:rgba(255,255,255,0);
+      border:2px solid rgba(255,255,255,0);
+      opacity:0;
+      transform:rotate(0) translateX(0) translateY(0);
+    }
+    100% {
+      height:auto;
+      width:auto;
+      color:rgba(255,255,255,1);
+      border:2px solid rgb(255, 255, 255);
+      opacity:1;
+      transform:rotate(0) translateX(0) translateY(0);
+    }
+  }
+  .fly:before,
+  .fly:after {animation:flyout .6s forwards;}
+  @keyframes flyout {
+    0% {
+      opacity:1;
+      transform:rotateX(0) rotateZ(0) translateX(-50%) translateY(0) scale(1);
+    }
+    33% {
+      opacity:0.66;
+      transform:rotateX(0) rotateZ(-5deg) translateX(-100%) translateY(0) scale(1);
+    }
+    100% {
+      opacity:0;
+      transform:rotateX(0) rotateZ(0) translateX(1000%) translateY(0) scale(1);
+    }
+  }
+
+  
+  
+  @media (min-width: 768px) {
+    .container-form {
+      flex-direction: row; /* Alinhe as colunas lado a lado no PC */
+    }
+  
+    .round-image {
+      width: 200px; /* Defina a largura desejada para a imagem */
+      height: 200px; /* Defina a altura desejada para a imagem */
+      object-fit: cover; /* Garante que a imagem cubra todo o espaço do contêiner */
+      margin-bottom: 10px;
+    }
+    
+    .client-text h2 {
+      font-size: 50px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      font-family: 'Nome da Fonte', sans-serif;
+      opacity: 0; /* Inicialmente, o texto é transparente */
+      transform: translateX(-50px); /* Inicialmente, o texto está deslocado para a esquerda */
+      animation: slideFadeInRight 1s ease-in-out forwards;
+      text-align: center;
+    }
+    
+    .client-text p {
+      font-size: 24px; /* Ajuste o tamanho da fonte para dispositivos móveis */
+      text-align: left;
+      transform: translateX(50px);
+      animation: slideFadeInLeft 1s ease-in-out forwards;
+      text-align: center;
+    }
+  }
+  
+  /* Estilos para celular */
+  @media screen and (max-width: 767px) {
+    .left-column,
+    .right-column {
+    flex: 1; /* Distribua o espaço igualmente entre as colunas */
+    max-width: 100%;
+    }
+  
+    .container-form {
+      flex-direction: column; /* Empilhe as colunas para dispositivos móveis */
+    }
+  
+    .left-column {
+      order: 1; /* Coluna esquerda primeiro para dispositivos móveis */
+    }
+  
+    .right-column {
+      order: 2; /* Coluna direita em segundo lugar para dispositivos móveis */
+    }
+  
+    .form-group {
+      order: 3; /* Formulário abaixo dos itens da coluna esquerda para dispositivos móveis */
+    }
+    
+    .round-image {
+      width: 200px; /* Defina a largura desejada para a imagem */
+      height: 200px; /* Defina a altura desejada para a imagem */
+      object-fit: cover; /* Garante que a imagem cubra todo o espaço do contêiner */
+      margin-bottom: 10px;
+    }
+  
+    .client-text h2, .client-text p {
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .client-text h2 {
+      font-size: 44px; /* Reduza o tamanho da fonte do subcabeçalho */
+      text-align: center;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+  
+    .client-text p {
+      font-size: 18px; /* Ajuste o tamanho da fonte para dispositivos móveis */
+      text-align: left;
+      margin-bottom: 50px;
+    }
+  
+    .mail-btn {
+      position:relative;
+      top:35%;
+      border-radius: 15px;
+      display:inline-block;
+      padding:0.4rem 0.4rem;
+      border:1px solid rgb(28, 82, 170);
+      background:rgb(28, 82, 170);
+      outline:none;
+      -webkit-appearance: none;
+      font-size: 1.5rem;
+      color:rgba(255,255,255,1);
+      text-decoration:none;
+      text-transform:uppercase;
+      letter-spacing:0.1rem;
+      text-indent:0.5rem;
+      cursor:pointer;
+      transition:
+        color 1.5s .5s,
+        border 3s 1s;
+    }
+  }
+  
+  
+  
+  
+  
+  
+  /* Container dos icones sociais */
+  .container-icons {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+    background: #000000;
+  }
+  
+  ul.social-icons {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  ul.social-icons li.social-icon {
+    list-style: none;
+  }
+  
+  ul.social-icons li.social-icon a {
+    display: block;
+    position: relative;
+    width: 60px; /* Reduza o tamanho dos ícones no PC */
+    height: 60px; /* Reduza o tamanho dos ícones no PC */
+    line-height: 60px; /* Reduza o tamanho dos ícones no PC */
+    font-size: 30px; /* Reduza o tamanho dos ícones no PC */
+    text-align: center;
+    text-decoration: none;
+    color: #404040;
+    margin: 0 15px; /* Reduza o espaço entre os ícones no PC */
+    transition: 0.5s;
+  }
+  
+  ul li a span {
+    position: absolute;
+    transition: transform 0.5s;
+  }
+  
+  @media only screen and (max-width: 768px) {
+    ul.social-icons li.social-icon a {
+      width: 40px; /* Reduza ainda mais o tamanho dos ícones em dispositivos móveis */
+      height: 40px; /* Reduza ainda mais o tamanho dos ícones em dispositivos móveis */
+      line-height: 40px; /* Reduza ainda mais o tamanho dos ícones em dispositivos móveis */
+      font-size: 24px; /* Reduza ainda mais o tamanho dos ícones em dispositivos móveis */
+      margin: 0 10px; /* Reduza o espaço entre os ícones em dispositivos móveis */
+    }
+  }
+  
+  ul li a span:nth-child(1),
+  ul li a span:nth-child(3){
+    width:100%;
+    height:3px;
+    background:#404040;
+  }
+  
+  ul li a span:nth-child(1) {
+    top:0;
+    left:0;
+    transform-origin: right;
+  }
+  
+  ul li a:hover span:nth-child(1) {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition:transform .5s;
+  }
+  
+  ul li a span:nth-child(3) {
+    bottom:0;
+    left:0;
+    transform-origin: left;
+  }
+  
+  ul li a:hover span:nth-child(3) {
+    transform: scaleX(0);
+    transform-origin: right;
+    transition:transform .5s;
+  }
+  
+  ul li a span:nth-child(2),
+  ul li a span:nth-child(4){
+    width:3px;
+    height:100%;
+    background:#404040;
+  }
+  
+  ul li a span:nth-child(2) {
+    top:0;
+    left:0;
+    transform:scale(0);
+    transform-origin: bottom;
+  }
+  
+  ul li a:hover span:nth-child(2) {
+    transform: scale(1);
+    transform-origin: top;
+    transition:transform .5s;
+  }
+  
+  ul li a span:nth-child(4) {
+    top:0;
+    right:0;
+    transform:scale(0);
+    transform-origin: top;
+  }
+  
+  ul li a:hover span:nth-child(4) {
+    transform: scale(1);
+    transform-origin: bottom;
+    transition:transform .5s;
+  }
+  
+  .facebook:hover {
+    color: #3b5998;
+  }
+  
+  .facebook:hover span { 
+    background: #3b5998;
+  }
+  
+  .whatsapp:hover {
+    color: #039900;
+  }
+  
+  .whatsapp:hover span { 
+    background: #039900;
+  }
+  
+  .instagram:hover {
+    color: #c32aa3;
+  }
+  
+  .instagram:hover span { 
+    background: #c32aa3;
+  }
+  
+  .maps:hover {
+    color: #dd4b39;
+  }
+  
+  .maps:hover span { 
+    background: #dd4b39;
+  }
+  
+  ul li a .whatsapp {
+    color: #1da1f2;
+  }
+  
+  ul li a:hover:nth-child(3) {
+    color: #c32aa3;
+  }
+  
+  ul li a:hover:nth-child(4) {
+    color: #dd4b39;
+  }
+  
+  .phone:hover {
+    color: #ffc107; /* Defina a cor amarela ao passar o mouse */
+  }
+  
+  .phone:hover span {
+    background: #ffc107; /* Defina a cor amarela ao passar o mouse */
+  }
+  
+  
+  
+  
+  
+  /* Direitos autorais */
+.container-cop {
+  position:relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #000000;
+  padding: 15px;
+  font-size: 18px;
+  color: rgb(153, 153, 153); /* Cor do texto com opacidade */
+  text-align: center;
+  border-top: 1px solid #333;
+  font-family: 'Montserrat', sans-serif; /* Substitua 'Sua Fonte Personalizada' pela fonte desejada */
+}
+
+.container-cop p {
+  margin: 0; /* Remova a margem superior que estava movendo o texto para baixo */
+}
+
+/* Estilo para o link */
+.site-credit a {
+  color: #ffffff; /* Cor do link de referência */
+  text-decoration: none;
+}
+
+.site-credit a:hover {
+  text-decoration: none; /* Adicionar sublinhado ao passar o mouse sobre o link */
+  color: #009ADD;
+}
+
+/* Estilo para a imagem */
+.credit-image {
+  width: 50px; /* Largura da imagem */
+  height: 50px; /* Altura da imagem */
+  margin-left: 5px; /* Margem à esquerda da imagem para espaçamento */
+  cursor: pointer; /* Cursor de mão para indicar clicável */
+  transition: transform 0.3s ease; /* Adiciona uma transição suave para a transformação */
+}
+
+/* Efeito de inchar ao passar o mouse sobre a imagem */
+.credit-image:hover {
+  transform: scale(1.1); /* Aumenta o tamanho em 110% */
+}
+
+@media only screen and (max-width: 767px) {
+  .container-cop {
+    position:relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #000000;
+    padding: 15px;
+    font-size: 14px;
+    color: rgb(153, 153, 153); /* Cor do texto com opacidade */
+    text-align: center;
+    border-top: 1px solid #333;
+    font-family: 'Montserrat', sans-serif; /* Substitua 'Sua Fonte Personalizada' pela fonte desejada */
+  }
+
+  .credit-image {
+    width: 35px; /* Largura da imagem */
+    height: 35px; /* Altura da imagem */
+    margin-left: 5px; /* Margem à esquerda da imagem para espaçamento */
+    cursor: pointer; /* Cursor de mão para indicar clicável */
+    transition: transform 0.3s ease; /* Adiciona uma transição suave para a transformação */
+  }
+}
